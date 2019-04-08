@@ -54,7 +54,7 @@ class audit(baseview.SuperUserpermissions):
                 u_mulit = Account.objects.filter(username=request.user).first()
                 if u_mulit.group == 'perform':
                     if qurey['valve']:
-                        if len(qurey['picker']) == 0:
+                        if qurey['picker'][0] is '':
                             info = SqlOrder.objects.filter(executor=request.user,
                                                            username__contains=qurey['user']).defer('sql').order_by(
                                 '-id')[
@@ -80,7 +80,7 @@ class audit(baseview.SuperUserpermissions):
                             executor=request.user).defer('sql').order_by('-id')[start:end]
                 else:
                     if qurey['valve']:
-                        if len(qurey['picker']) == 0:
+                        if qurey['picker'][0] is '':
                             info = SqlOrder.objects.filter(assigned=request.user,
                                                            username__contains=qurey['user']).defer('sql').order_by(
                                 '-id')[
@@ -267,7 +267,7 @@ class getsql(baseview.BaseView):
         id = request.GET.get('id')
         bundle = request.GET.get('bundle_id')
         baseCon = DatabaseList.objects.filter(id=bundle).first()
-        sql = SqlOrder.objects.filter(id=id).first()
+        sql = SqlOrder.objects.filter(id=id).only('sql').first()
         return Response({'sql': sql.sql, 'comRoom': baseCon.computer_room, 'conn': baseCon.connection_name})
 
 
