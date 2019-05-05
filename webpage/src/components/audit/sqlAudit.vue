@@ -401,8 +401,7 @@
         this.tableData[index].status === 2 ? this.switch_show = true : this.switch_show = false
         axios.get(`${this.$config.url}/getsql?id=${this.formitem.id}&bundle_id=${this.formitem.bundle_id}`)
           .then(res => {
-            let tmpSql = res.data.sql.split(';')
-            for (let i of tmpSql) {
+            for (let i of JSON.parse(res.data.sql)) {
               this.sql.push({'sql': i})
             }
             this.formitem.computer_room = res.data.comRoom
@@ -471,6 +470,8 @@
               this.summit = false
               this.loading = false
             } else {
+              this.loading = false
+              this.modal2 = false
               this.$config.err_notice(this, res.data.status)
             }
           })
