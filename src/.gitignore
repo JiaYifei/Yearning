@@ -1,9 +1,0 @@
-.DS_Store
-.idea/*
-log/*.log
-deploy.conf
-*.py[cod]
-*.so
-*.egg
-*.egg-info
-__pycache__/*

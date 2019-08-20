@@ -18,7 +18,6 @@ develop-eggs/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -102,7 +101,5 @@ ENV/
 
 # mypy
 .mypy_cache/
-.idea/modules.xml
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/Yearning.iml
+.idea/*.xml
+.vscode/
